@@ -1,31 +1,30 @@
 apiVersion: apps/v1
 kind: Deployment
 metadata:
-  name: lembretes-deployment
+  name: logs-deployment
 spec:
   replicas: 1
   selector:
     matchLabels:
-      app: lembretes
+      app: logs
   template:
     metadata:
       labels:
-        app: lembretes
+        app: logs
     spec:
       containers:
-        - name: lembretes
-          image: leletin/lembretes
-
+        - name: logs
+          image: leletin/logs
 ---
 apiVersion: v1
 kind: Service
 metadata:
-  name: lembretes-clusterip-service
+  name: logs-clusterip-service
 spec:
   selector:
-    app: lembretes
+    app: logs
   ports:
-  - name: lembretes
+  - name: logs
     protocol: TCP
-    port: 4000
-    targetPort: 4000
+    port: 8000
+    targetPort: 8000

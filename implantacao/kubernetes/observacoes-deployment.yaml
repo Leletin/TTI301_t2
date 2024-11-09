@@ -1,0 +1,30 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: observacoes-deployment
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: observacoes
+  template:
+    metadata:
+      labels:
+        app: observacoes
+    spec:
+      containers:
+        - name: observacoes
+          image: leletin/observacoes
+---
+apiVersion: v1
+kind: Service
+metadata:
+  name: observacoes-clusterip-service
+spec:
+  selector:
+    app: observacoes
+  ports:
+  - name: observacoes
+    protocol: TCP
+    port: 5000
+    targetPort: 5000

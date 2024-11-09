@@ -1,31 +1,30 @@
 apiVersion: apps/v1
 kind: Deployment
 metadata:
-  name: lembretes-deployment
+  name: consulta-deployment
 spec:
   replicas: 1
   selector:
     matchLabels:
-      app: lembretes
+      app: consulta
   template:
     metadata:
       labels:
-        app: lembretes
+        app: consulta
     spec:
       containers:
-        - name: lembretes
-          image: leletin/lembretes
-
+        - name: consulta
+          image: leletin/consulta
 ---
 apiVersion: v1
 kind: Service
 metadata:
-  name: lembretes-clusterip-service
+  name: consulta-clusterip-service
 spec:
   selector:
-    app: lembretes
+    app: consulta
   ports:
-  - name: lembretes
+  - name: consulta
     protocol: TCP
-    port: 4000
-    targetPort: 4000
+    port: 6000
+    targetPort: 6000
